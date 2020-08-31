@@ -1,48 +1,27 @@
 <template>
   <div class="home">
     <div class="page-bar">
-      <img src="../assets/images/nfhy-bar-logo.png"
-           alt="Logo" />
+      <img src="../assets/images/nfhy-bar-logo.png" alt="Logo" />
       <span class="nfhy-bar-text">香和·南方花园</span>
     </div>
 
-    <v-col cols="12"
-           style="padding: 0;">
-      <v-tabs centered
-              grow
-              hide-slider
-              v-model="tab"
-              background-color="#02565b">
-        <v-tab v-for="item in items"
-               :key="item.tab"
-               style="color: #CACACAFF;">{{ item.tab }}</v-tab>
+    <v-col cols="12" style="padding: 0;">
+      <v-tabs centered grow hide-slider v-model="tab" background-color="#02565b">
+        <v-tab v-for="item in items" :key="item.tab" style="color: #CACACAFF;">{{ item.tab }}</v-tab>
       </v-tabs>
 
       <v-tabs-items v-model="tab">
-        <v-tab-item v-for="item in items"
-                    :key="item.tab">
-          <v-carousel hide-delimiter-background
-                      show-arrows-on-hover
-                      delimiter-icon="mdi-minus"
-                      continuous
-                      cycle>
-            <v-carousel-item v-for="(carousel, index) in item.content"
-                             :key="index"
-                             :src="carousel.src" />
+        <v-tab-item v-for="item in items" :key="item.tab">
+          <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" continuous cycle>
+            <v-carousel-item v-for="(carousel, index) in item.content" :key="index" :src="carousel.src" />
           </v-carousel>
         </v-tab-item>
       </v-tabs-items>
     </v-col>
 
-    <v-col cols="12"
-           class="building"
-           style="padding: 0;">
-      <v-tabs centered
-              grow
-              hide-slider
-              background-color="#02565b">
-        <v-tab href="#detail"
-               style="color: #CACACAFF;">详情</v-tab>
+    <v-col cols="12" class="building" style="padding: 0;">
+      <v-tabs centered grow hide-slider background-color="#02565b">
+        <v-tab href="#detail" style="color: #CACACAFF;">详情</v-tab>
         <v-tab-item value="detail">
           <v-col cols="12">
             <div class="building-title"><span>楼盘详情</span></div>
@@ -102,57 +81,30 @@
           </v-col>
         </v-tab-item>
 
-        <v-tab href="#floor"
-               style="color: #CACACAFF;">户型图</v-tab>
+        <v-tab href="#floor" style="color: #CACACAFF;">户型图</v-tab>
         <v-tab-item value="floor">
-          <v-carousel hide-delimiter-background
-                      show-arrows-on-hover
-                      delimiter-icon="mdi-minus"
-                      continuous
-                      cycle>
-            <v-carousel-item v-for="(floor, index) in floors"
-                             :key="index"
-                             :src="floor.src"
-                             contain />
+          <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" continuous>
+            <v-carousel-item v-for="(floor, index) in floors" :key="index" :src="floor.src" contain />
           </v-carousel>
         </v-tab-item>
 
-        <v-tab href="#purchase"
-               style="background-color: #ff5b5c; color: #CACACAFF;">团购</v-tab>
+        <v-tab href="#purchase" style="background-color: #ff5b5c; color: #CACACAFF;">团购</v-tab>
         <v-tab-item value="purchase">
           <v-col cols="12">
             <div class="form">
-              <v-text-field v-model="name"
-                            :rules="nameRules"
-                            :counter="6"
-                            label="姓名"
-                            required></v-text-field>
-              <v-text-field v-model="phone"
-                            :rules="phoneRules"
-                            :counter="11"
-                            label="电话"
-                            type="number"
-                            required></v-text-field>
+              <v-text-field v-model="name" :rules="nameRules" :counter="6" label="姓名" required></v-text-field>
+              <v-text-field v-model="phone" :rules="phoneRules" :counter="11" label="电话" type="number" required></v-text-field>
             </div>
 
             <button class="submit">提交</button>
           </v-col>
         </v-tab-item>
-
       </v-tabs>
     </v-col>
 
-    <v-btn fixed
-           bottom
-           right
-           depressed
-           color="#02565b"
-           href="tel: 759-9999"
-           style="color: #ffffff;">
-      <v-icon left
-              dark>mdi-phone</v-icon>
+    <v-btn fixed bottom right depressed color="#02565b" href="tel: 759-9999" style="color: #ffffff;">
+      <v-icon left dark>mdi-phone</v-icon>
       联系我们
-
     </v-btn>
 
     <div class="footer">
@@ -163,124 +115,124 @@
 </template>
 
 <script>
-export default {
-  name: 'Home',
-  data () {
-    return {
-      color: '#2a765a',
-      tab: null,
-      name: '',
-      nameRules: [(v) => !!v || '请输入您的姓名'],
-      phone: '',
-      phoneRules: [(v) => !!v || '请输入手机号', (v) => /^1[3-9]\d{9}$/.test(v) || '请输入正确的手机号'],
-      items: [
-        {
-          tab: '效果图',
-          content: [
-            { src: require('../assets/images/effect/1.jpg') },
-            { src: require('../assets/images/effect/2.jpg') },
-            { src: require('../assets/images/effect/3.jpg') },
-            { src: require('../assets/images/effect/4.jpg') },
-            { src: require('../assets/images/effect/5.jpg') },
-            { src: require('../assets/images/effect/6.jpg') },
-          ],
-        },
-        {
-          tab: '实景图',
-          content: [
-            { src: require('../assets/images/scenery/1.jpg') },
-            { src: require('../assets/images/scenery/2.jpg') },
-            { src: require('../assets/images/scenery/3.jpg') },
-            { src: require('../assets/images/scenery/4.jpg') },
-          ],
-        },
-      ],
-      floors: [
-        { src: require('../assets/images/floor/1.jpg') },
-        { src: require('../assets/images/floor/2.jpg') },
-        { src: require('../assets/images/floor/3.jpg') },
-        { src: require('../assets/images/floor/4.jpg') },
-      ],
-    };
-  },
-};
+  export default {
+    name: 'Home',
+    data() {
+      return {
+        color: '#2a765a',
+        tab: null,
+        name: '',
+        nameRules: [(v) => !!v || '请输入您的姓名'],
+        phone: '',
+        phoneRules: [(v) => !!v || '请输入手机号', (v) => /^1[3-9]\d{9}$/.test(v) || '请输入正确的手机号'],
+        items: [
+          {
+            tab: '效果图',
+            content: [
+              { src: require('../assets/images/effect/1.jpg') },
+              { src: require('../assets/images/effect/2.jpg') },
+              { src: require('../assets/images/effect/3.jpg') },
+              { src: require('../assets/images/effect/4.jpg') },
+              { src: require('../assets/images/effect/5.jpg') },
+              { src: require('../assets/images/effect/6.jpg') },
+            ],
+          },
+          {
+            tab: '实景图',
+            content: [
+              { src: require('../assets/images/scenery/1.jpg') },
+              { src: require('../assets/images/scenery/2.jpg') },
+              { src: require('../assets/images/scenery/3.jpg') },
+              { src: require('../assets/images/scenery/4.jpg') },
+            ],
+          },
+        ],
+        floors: [
+          { src: require('../assets/images/floor/1.jpg') },
+          { src: require('../assets/images/floor/2.jpg') },
+          { src: require('../assets/images/floor/3.jpg') },
+          { src: require('../assets/images/floor/4.jpg') },
+        ],
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-.home {
-  .page-bar {
-    width: 100%;
-    background-color: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.625rem 0;
-
-    img {
-      width: 3.75rem;
-      height: 3.75rem;
-      object-fit: contain;
-      margin-right: 0.3125rem;
-    }
-
-    .nfhy-bar-text {
-      font-size: 24px;
-    }
-  }
-
-  .building {
-    margin-bottom: 55px;
-
-    .building-title {
-      border-left: 10px solid var(--blackish-green);
-      border-bottom: 1px solid var(--blackish-green);
-      height: 3.125rem;
+  .home {
+    .page-bar {
+      width: 100%;
+      background-color: var(--white);
       display: flex;
+      justify-content: center;
       align-items: center;
+      padding: 0.625rem 0;
 
-      span {
-        margin-left: 5px;
-        font-size: 18px;
-        font-weight: bold;
+      img {
+        width: 3.75rem;
+        height: 3.75rem;
+        object-fit: contain;
+        margin-right: 0.3125rem;
+      }
+
+      .nfhy-bar-text {
+        font-size: 24px;
       }
     }
 
-    .building-info,
-    .building-intro {
-      display: flex;
-      flex-direction: column;
-      margin-left: 15px;
-      padding: 10px 0;
-      line-height: 2;
+    .building {
+      margin-bottom: 55px;
+
+      .building-title {
+        border-left: 10px solid #02565b;
+        border-bottom: 1px solid #02565b;
+        height: 3.125rem;
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-left: 5px;
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+
+      .building-info,
+      .building-intro {
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+        padding: 10px 0;
+        line-height: 2;
+      }
+
+      .submit {
+        background-color: #02565b;
+        width: 100%;
+        height: 55px;
+        border-radius: 3px;
+        margin-top: 10px;
+      }
     }
 
-    .submit {
-      background-color: var(--blackish-green);
+    .footer {
       width: 100%;
-      height: 55px;
-      border-radius: 3px;
-      margin-top: 10px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      border-top: 1px solid #02565b;
+
+      span.copyright {
+        margin-right: 0.625rem;
+      }
     }
   }
-
-  .footer {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-
-    span.copyright {
-      margin-right: 0.625rem;
-    }
-  }
-}
 </style>
 
 <style lang="scss">
-.v-tab--active {
-  color: #ffffff !important;
-}
+  .v-tab--active {
+    color: #ffffff !important;
+  }
 </style>
