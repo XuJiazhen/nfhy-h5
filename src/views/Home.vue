@@ -9,7 +9,7 @@
       <!-- <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" cycle height="450">
         <v-carousel-item v-for="(carousel, index) in effects" :key="index" :src="carousel.src" />
       </v-carousel> -->
-      <v-tabs centered grow hide-slider v-model="tab" background-color="#02565b">
+      <v-tabs centered grow hide-slider v-model="tab" background-color="var(--acid-blue)">
         <v-tab v-for="item in items" :key="item.tab" style="color: #e3e3e3;">{{ item.tab }}</v-tab>
       </v-tabs>
 
@@ -23,7 +23,7 @@
     </v-col>
 
     <v-col cols="12" class="building" style="padding: 0;">
-      <v-tabs centered grow hide-slider background-color="#02565b">
+      <v-tabs centered grow hide-slider background-color="var(--acid-blue)">
         <v-tab id="detail" href="#detail" style="color: #e3e3e3;" @click="onScrollTo">详情</v-tab>
         <v-tab-item value="detail">
           <v-col cols="12">
@@ -104,19 +104,14 @@
       </v-tabs>
     </v-col>
 
-    <!-- <v-btn fixed bottom right depressed color="#02565b" href="tel: 0739-7959999" style="color: #ffffff;">
-      <v-icon left dark>mdi-phone</v-icon>
-      联系我们
-    </v-btn> -->
-
     <div class="nav-bottom">
       <div class="contact">
-        <v-btn class="mr-2" color="#02565b" href="tel: 0739-7959999" style="color: #ffffff;" depressed large>
+        <v-btn class="mr-2" color="var(--acid-blue)" href="tel: 0739-7959999" style="color: #ffffff;" depressed large>
           <v-icon left dark>mdi-message</v-icon>
           置业顾问
         </v-btn>
 
-        <v-btn class="mr-2" color="#02565b" href="tel: 0739-7959999" style="color: #ffffff;" depressed large>
+        <v-btn class="mr-2" color="var(--acid-blue)" href="tel: 0739-7959999" style="color: #ffffff;" depressed large>
           <v-icon left dark>mdi-phone</v-icon>
           联系我们
         </v-btn>
@@ -238,8 +233,8 @@
       margin-bottom: 55px;
 
       .building-title {
-        border-left: 10px solid #02565b;
-        border-bottom: 1px solid #02565b;
+        border-left: 10px solid var(--acid-blue);
+        border-bottom: 1px solid var(--acid-blue);
         height: 3.125rem;
         display: flex;
         align-items: center;
@@ -261,7 +256,7 @@
       }
 
       .submit {
-        background-color: #02565b;
+        background-color: var(--acid-blue);
         color: var(--white);
         width: 100%;
         height: 55px;
