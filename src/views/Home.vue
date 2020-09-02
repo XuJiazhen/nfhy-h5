@@ -6,13 +6,16 @@
     </div>
 
     <v-col cols="12" style="padding: 0;">
+      <!-- <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" cycle height="450">
+        <v-carousel-item v-for="(carousel, index) in effects" :key="index" :src="carousel.src" />
+      </v-carousel> -->
       <v-tabs centered grow hide-slider v-model="tab" background-color="#02565b">
-        <v-tab v-for="item in items" :key="item.tab" style="color: #CACACAFF;">{{ item.tab }}</v-tab>
+        <v-tab v-for="item in items" :key="item.tab" style="color: #e3e3e3;">{{ item.tab }}</v-tab>
       </v-tabs>
 
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="item in items" :key="item.tab">
-          <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" continuous cycle>
+          <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" height="421">
             <v-carousel-item v-for="(carousel, index) in item.content" :key="index" :src="carousel.src" />
           </v-carousel>
         </v-tab-item>
@@ -21,7 +24,7 @@
 
     <v-col cols="12" class="building" style="padding: 0;">
       <v-tabs centered grow hide-slider background-color="#02565b">
-        <v-tab href="#detail" style="color: #CACACAFF;">详情</v-tab>
+        <v-tab id="detail" href="#detail" style="color: #e3e3e3;" @click="onScrollTo">详情</v-tab>
         <v-tab-item value="detail">
           <v-col cols="12">
             <div class="building-title"><span>楼盘详情</span></div>
@@ -29,9 +32,8 @@
               <span class="name">香和·南方花园</span>
               <span class="developer">开发商：洞口香和房地产开发有限责任公司</span>
               <span class="selling-location">售楼处地址：洞口华荣路与文昌南路交汇处</span>
-              <span class="price">参考均价：<span>3980</span>元 / m²</span>
+              <span class="price">参考单价：<span>3980</span>元 / m²</span>
               <span class="region">所属区域：城区</span>
-              <span class="phone">400-0731-079 转 19612</span>
             </div>
           </v-col>
 
@@ -48,7 +50,7 @@
               <span>占地面积：24857m²</span>
               <span>规划户数：790户</span>
               <span>车位：284</span>
-              <span>交通状况：地铁1号线、地铁2号线</span>
+              <span>交通状况：公交12路、汽车总站、汽车东站、洞口高铁站</span>
             </div>
           </v-col>
 
@@ -81,14 +83,14 @@
           </v-col>
         </v-tab-item>
 
-        <v-tab href="#floor" style="color: #CACACAFF;">户型图</v-tab>
+        <v-tab id="floor" href="#floor" style="color: #e3e3e3;" @click="onScrollTo">户型图</v-tab>
         <v-tab-item value="floor">
-          <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" continuous>
+          <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus">
             <v-carousel-item v-for="(floor, index) in floors" :key="index" :src="floor.src" contain />
           </v-carousel>
         </v-tab-item>
 
-        <v-tab href="#purchase" style="background-color: #ff5b5c; color: #CACACAFF;">团购</v-tab>
+        <v-tab id="purchase" href="#purchase" style="background-color: #ff5b5c; color: #e3e3e3;" @click="onScrollTo">团购</v-tab>
         <v-tab-item value="purchase">
           <v-col cols="12">
             <div class="form">
@@ -102,10 +104,24 @@
       </v-tabs>
     </v-col>
 
-    <v-btn fixed bottom right depressed color="#02565b" href="tel: 759-9999" style="color: #ffffff;">
+    <!-- <v-btn fixed bottom right depressed color="#02565b" href="tel: 0739-7959999" style="color: #ffffff;">
       <v-icon left dark>mdi-phone</v-icon>
       联系我们
-    </v-btn>
+    </v-btn> -->
+
+    <div class="nav-bottom">
+      <div class="contact">
+        <v-btn class="mr-2" color="#02565b" href="tel: 0739-7959999" style="color: #ffffff;" depressed large>
+          <v-icon left dark>mdi-message</v-icon>
+          置业顾问
+        </v-btn>
+
+        <v-btn class="mr-2" color="#02565b" href="tel: 0739-7959999" style="color: #ffffff;" depressed large>
+          <v-icon left dark>mdi-phone</v-icon>
+          联系我们
+        </v-btn>
+      </div>
+    </div>
 
     <div class="footer">
       <span class="copyright">©{{ new Date().getFullYear() }} nfhy.huijianfc.com</span>
@@ -147,6 +163,14 @@
             ],
           },
         ],
+        effects: [
+          { src: require('../assets/images/effect/1.jpg') },
+          { src: require('../assets/images/effect/2.jpg') },
+          { src: require('../assets/images/effect/3.jpg') },
+          { src: require('../assets/images/effect/4.jpg') },
+          { src: require('../assets/images/effect/5.jpg') },
+          { src: require('../assets/images/effect/6.jpg') },
+        ],
         floors: [
           { src: require('../assets/images/floor/1.jpg') },
           { src: require('../assets/images/floor/2.jpg') },
@@ -154,6 +178,36 @@
           { src: require('../assets/images/floor/4.jpg') },
         ],
       };
+    },
+    methods: {
+      onScrollTo(e) {
+        const ele = document.querySelector(`#${e.target.id}`);
+        const scrollY = window.pageYOffset;
+        const eleY = ele.getBoundingClientRect().top;
+        const endPosition = scrollY + eleY;
+
+        // +new Date() 隐式类型转换，日期 => 数字（时间戳）
+        const startTime = +new Date();
+        const duration = 300;
+
+        function run() {
+          // 每一帧的时间
+          const time = +new Date() - startTime;
+
+          // time / duration 表示滚动 150ms 需要多少帧
+          // 以及每一帧在 Y 轴上滚动多少距离
+          window.scrollTo(0, scrollY + eleY * (time / duration));
+          run.timer = requestAnimationFrame(run);
+
+          // 时间到了则表示滚动到了目标位置，取消动画
+          if (time >= duration) {
+            window.scrollTo(0, endPosition);
+            cancelAnimationFrame(run.timer);
+          }
+        }
+
+        requestAnimationFrame(run);
+      },
     },
   };
 </script>
@@ -208,11 +262,25 @@
 
       .submit {
         background-color: #02565b;
+        color: var(--white);
         width: 100%;
         height: 55px;
         border-radius: 3px;
         margin-top: 10px;
       }
+    }
+
+    .nav-bottom {
+      width: 100%;
+      height: 55px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: var(--white);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      border-top: 1px solid #e1e4e8;
     }
 
     .footer {
@@ -222,7 +290,8 @@
       justify-content: center;
       align-items: center;
       user-select: none;
-      border-top: 1px solid #02565b;
+      border-top: 1px solid #e1e4e8;
+      margin-bottom: 55px;
 
       span.copyright {
         margin-right: 0.625rem;
