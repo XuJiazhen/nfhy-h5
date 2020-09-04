@@ -78,7 +78,7 @@
               <span>布局：超百米楼间距点式楼栋围合式布局，既保障居家隐私条件，也充分满足采光、通风等条件；</span>
               <span>地段：城南核心发展区域，项目2公里范围内覆盖：好又多超市、县医院、裕峰花园酒店、法院、政务中心、汽车总站、高速出口等；</span>
               <span>教育：南方花园分配学校，主要就读芙蓉学校、城关一校，两大名校近在咫尺，自带书香气息，让您的孩子赢在起跑线上；</span>
-              <span> 环境：洞口五证一书齐全在售仅有一个超万平中庭园林景观的大平层项目。</span>
+              <span> 环境：超万平中庭园林景观。</span>
             </div>
           </v-col>
         </v-tab-item>
@@ -157,14 +157,6 @@
               { src: require('../assets/images/scenery/4.jpg') },
             ],
           },
-        ],
-        effects: [
-          { src: require('../assets/images/effect/1.jpg') },
-          { src: require('../assets/images/effect/2.jpg') },
-          { src: require('../assets/images/effect/3.jpg') },
-          { src: require('../assets/images/effect/4.jpg') },
-          { src: require('../assets/images/effect/5.jpg') },
-          { src: require('../assets/images/effect/6.jpg') },
         ],
         floors: [
           { src: require('../assets/images/floor/1.jpg') },
