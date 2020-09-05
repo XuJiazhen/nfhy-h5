@@ -6,24 +6,21 @@
     </div>
 
     <v-col cols="12" style="padding: 0;">
-      <!-- <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" cycle height="450">
-        <v-carousel-item v-for="(carousel, index) in effects" :key="index" :src="carousel.src" />
-      </v-carousel> -->
-      <v-tabs centered grow hide-slider v-model="tab" background-color="var(--acid-blue)">
+      <v-tabs centered grow hide-slider v-model="tab" background-color="var(--acid-blue)" height="40">
         <v-tab v-for="item in items" :key="item.tab" style="color: #e3e3e3;">{{ item.tab }}</v-tab>
       </v-tabs>
 
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="item in items" :key="item.tab">
-          <v-carousel hide-delimiter-background show-arrows-on-hover delimiter-icon="mdi-minus" height="421">
-            <v-carousel-item v-for="(carousel, index) in item.content" :key="index" :src="carousel.src" />
+          <v-carousel hide-delimiter-background hide-delimiters show-arrows-on-hover height="210.5">
+            <v-carousel-item v-for="(carousel, index) in item.content" :key="index" :src="carousel.src"></v-carousel-item>
           </v-carousel>
         </v-tab-item>
       </v-tabs-items>
     </v-col>
 
     <v-col cols="12" class="building" style="padding: 0;">
-      <v-tabs centered grow hide-slider background-color="var(--acid-blue)">
+      <v-tabs centered grow hide-slider background-color="var(--acid-blue)" height="40">
         <v-tab id="detail" href="#detail" style="color: #e3e3e3;" @click="onScrollTo">详情</v-tab>
         <v-tab-item value="detail">
           <v-col cols="12">
@@ -290,5 +287,6 @@
 <style lang="scss">
   .v-tab--active {
     color: #ffffff !important;
+    background-color: rgba($color: #ffffff, $alpha: 0.2);
   }
 </style>
